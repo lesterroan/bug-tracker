@@ -17,8 +17,8 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Manage Roles",
-    path: "/manageroles",
+    title: "Manage Users",
+    path: "/ManageUsers",
     icon: <AiIcons.AiFillHome />,
     cName: "nav-text",
   },

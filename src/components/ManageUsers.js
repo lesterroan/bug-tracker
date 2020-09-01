@@ -3,7 +3,7 @@ import Select from "react-select";
 import { GlobalContext } from "../context/GlobalState";
 import { Button, Card, Table } from "react-bootstrap";
 
-function ManageRoles() {
+function ManageUsers() {
   let context = useContext(GlobalContext);
   let [searchTerm, setSearchTerm] = useState("");
 
@@ -73,4 +73,4 @@ const People = (props) => {
   ));
 };
 
-export default ManageRoles;
+export default ManageUsers;
