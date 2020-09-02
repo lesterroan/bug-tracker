@@ -142,7 +142,7 @@ const EditProject = (props) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Edit Project Properties</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -160,14 +160,18 @@ const EditProject = (props) => {
                 <Col>
                   <Form.Label>Start Date</Form.Label>
                   <Form.Control type="text" placeholder="initial value" />
-                  <DatePicker />
+                  <PickDate />
                   <Form.Label>Target End Date</Form.Label>
                   <Form.Control type="text" placeholder="initial value" />
                 </Col>
                 <Col>
                   <InputGroup className="mb-2 mr-sm-2">
                     <Form.Label>Actual End Date</Form.Label>
-                    <Form.Control type="text" placeholder="initial value" />
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      placeholder="initial value"
+                    />
                     <InputGroup.Prepend>
                       <InputGroup.Text>@</InputGroup.Text>
                     </InputGroup.Prepend>
