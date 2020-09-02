@@ -173,8 +173,21 @@ const EditIssue = (props) => {
                   <Form.Label>Target Resolution Date</Form.Label>
                   <Form.Control as="input" />
                 </Form.Group>
+
+                <Form.Group>
+                  <Form.Label>Progress</Form.Label>
+                  <Form.Control as="textarea" />
+                </Form.Group>
               </Form>
             </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Title>Resolution</Card.Title>
+            <Form.Group>
+              <Form.Label>Actual Resolution Date</Form.Label>
+              <Form.Control as="input" />
+            </Form.Group>
           </Card>
         </Modal.Body>
         <Modal.Footer>
