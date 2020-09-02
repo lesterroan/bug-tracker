@@ -1,9 +1,20 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Table } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Table,
+  Container,
+  Row,
+  Col,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
 import { GlobalContext } from "../context/GlobalState";
 import Modal from "react-bootstrap/Modal";
 import ModalDialog from "react-bootstrap/ModalDialog";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Project(props) {
   const goBackToProjects = () => {
@@ -135,7 +146,36 @@ const EditProject = (props) => {
           <Modal.Title>Edit Project Properties</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <span>hey</span>
+          <Form>
+            <Form.Group>
+              <Form.Label>Project Name</Form.Label>
+              <Form.Control type="text" placeholder="initial value" />
+              <Form.Text className="text-muted">
+                Enter a relevant project name.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Row>
+                <Col>
+                  <Form.Label>Start Date</Form.Label>
+                  <Form.Control type="text" placeholder="initial value" />
+                  <DatePicker />
+                  <Form.Label>Target End Date</Form.Label>
+                  <Form.Control type="text" placeholder="initial value" />
+                </Col>
+                <Col>
+                  <InputGroup className="mb-2 mr-sm-2">
+                    <Form.Label>Actual End Date</Form.Label>
+                    <Form.Control type="text" placeholder="initial value" />
+                    <InputGroup.Prepend>
+                      <InputGroup.Text>@</InputGroup.Text>
+                    </InputGroup.Prepend>
+                  </InputGroup>
+                </Col>
+              </Form.Row>
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -147,6 +187,15 @@ const EditProject = (props) => {
       </Modal>
     </>
   );
+};
+
+const PickDate = (props) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
+  return <DatePicker selected={startDate} onChange={handleChange} />;
 };
 
 export default Project;
