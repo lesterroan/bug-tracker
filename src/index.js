@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Firebase, { FirebaseContext } from "./components/Firebase";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>

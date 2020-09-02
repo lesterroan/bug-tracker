@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Table } from "react-bootstrap";
 import { GlobalContext } from "../context/GlobalState";
+import Modal from "react-bootstrap/Modal";
+import ModalDialog from "react-bootstrap/ModalDialog";
 
 function Project(props) {
   const goBackToProjects = () => {
@@ -34,11 +36,11 @@ function Project(props) {
           <span>{project.project_name} Details</span>
           <span>
             <Button onClick={goBackToProjects}>All Projects</Button>
-            <Button>
-              <Link to={{ pathname: "/editproject", data: project }}>
+
+            {/* <Link to={{ pathname: "/editproject", data: project }}>
                 Edit Project
-              </Link>
-            </Button>
+              </Link> */}
+            <EditProject project={project} />
           </span>
         </Card.Title>
         <Card.Body>
@@ -107,4 +109,44 @@ const People = (props) => {
     );
   });
 };
+
+const EditProject = (props) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Edit Project
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Project Properties</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <span>hey</span>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger">Delete</Button>
+          <Button variant="primary">Apply Changes</Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
+
 export default Project;
