@@ -22,6 +22,7 @@ const initialState = {
     {
       project_id: 1,
       project_name: "Project 1",
+      project_description: "qwertyu",
       start_date: "date",
       target_end_date: "date",
       actual_end_date: "date",
@@ -33,6 +34,7 @@ const initialState = {
     {
       project_id: 2,
       project_name: "Project 2",
+      project_description: "sdfghjk",
       start_date: "date",
       target_end_date: "date",
       actual_end_date: "date",

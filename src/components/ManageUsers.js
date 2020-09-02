@@ -48,6 +48,18 @@ function ManageUsers() {
               <label htmlFor="search">Search Person:</label>
               <input id="search" type="text" onChange={setSearchTerm} />
             </div>
+            <Table striped border hover>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <People people={people} />
+              </tbody>
+            </Table>
           </Card.Body>
           <Card.Footer>
             <span>Showing 1 to 10 of 13 entries</span>
