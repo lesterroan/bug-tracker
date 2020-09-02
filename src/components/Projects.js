@@ -19,7 +19,7 @@ function Projects() {
             <label htmlFor="search">Search Project: </label>
             <input id="search" type="text" />
           </span>
-          <Table>
+          <Table striped border hover>
             <thead>
               <tr>
                 <th>Project Name</th>

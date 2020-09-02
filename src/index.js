@@ -9,12 +9,12 @@ import Firebase, { FirebaseContext } from "./components/Firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
-  <FirebaseContext.Provider value={new Firebase()}>
-    <Router>
-      <Navbar />
-      <App />
-    </Router>
-  </FirebaseContext.Provider>,
+  // <FirebaseContext.Provider value={new Firebase()}>
+  <Router>
+    <Navbar />
+    <App />
+  </Router>,
+  // </FirebaseContext.Provider>,
   document.getElementById("root")
 );
 

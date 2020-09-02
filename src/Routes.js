@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Login } from "./components/Login";
+import Login from "./components/Login";
 import { GuestOptions } from "./components/GuestOptions";
 import { Dashboard } from "./components/Dashboard";
 import Navbar from "./components/Navbar";
@@ -9,18 +9,22 @@ import Projects from "./components/Projects";
 import Project from "./components/Project";
 import EditProject from "./components/EditProject";
 import Issues from "./components/Issues";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Login} />
-      <Route path="/guest" component={GuestOptions} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/manageusers" component={ManageUsers} />
-      <Route path="/projects" component={Projects} />
-      <Route path="/project" component={Project} />
-      <Route path="/editproject" component={EditProject} />
-      <Route path="/issues" component={Issues} />
+      <PrivateRoute exact path="/" component={Dashboard} />
+      {/* <Route path="/" exact component={Dashboard} /> */}
+      <Route path="/login" exact component={Login} />
+
+      <PrivateRoute path="/guest" component={GuestOptions} />
+      {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
+      <PrivateRoute path="/manageusers" component={ManageUsers} />
+      <PrivateRoute path="/projects" component={Projects} />
+      <PrivateRoute path="/project" component={Project} />
+      <PrivateRoute path="/editproject" component={EditProject} />
+      <PrivateRoute path="/issues" component={Issues} />
     </Switch>
   );
 }

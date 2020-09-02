@@ -1,4 +1,6 @@
-import app from "firebase/app";
+// import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 // import "firebase/auth";
 // using single config for both dev and production
 const config = {
@@ -12,25 +14,29 @@ const config = {
   measurementId: "G-BBP5L6Q1GD",
 };
 
-class Firebase {
-  constructor() {
-    app.initializeApp();
+// class Firebase {
+//   constructor() {
+//     app.initializeApp(config);
 
-    // this.auth = app.auth();
+//     this.auth = app.auth();
 
-    //   doCreateUserWithEmailAndPassword = (email, password) =>
-    //     this.auth.createUserWithEmailAndPassword(email, password);
+//     // doCreateUserWithEmailAndPassword = (email, password) =>
+//     //   this.auth.createUserWithEmailAndPassword(email, password);
 
-    //   doSignInWithEmailAndPassword = (email, password) =>
-    //     this.auth.doSignInWithEmailAndPassword(email, password);
+//     // doSignInWithEmailAndPassword = (email, password) =>
+//     //   this.auth.doSignInWithEmailAndPassword(email, password);
 
-    //   doSignOut = () => this.auth.signOut();
+//     // doSignOut = () => this.auth.signOut();
 
-    //   doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
+//     // doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
 
-    //   doPasswordUpdate = (password) =>
-    //     this.auth.currentUser.updatePassword(password);
-  }
-}
+//     // doPasswordUpdate = (password) =>
+//     //   this.auth.currentUser.updatePassword(password);
+//   }
+// }
 
-export default Firebase;
+// export default Firebase;
+
+const app = firebase.initializeApp(config);
+
+export default app;

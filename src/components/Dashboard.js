@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Tabs, Tab } from "react-bootstrap";
 import "./Dashboard.css";
 import { GlobalContext } from "../context/GlobalState";
 import CanvasJSReact from "../canvasjs.react";
+// import Firebase from "./Firebase";
+import app from "./Firebase";
 //var CanvasJSReact = require('./canvasjs.react');
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -157,32 +159,40 @@ export const Dashboard = () => {
   };
   return (
     <div
-      style={{
-        background: "#f7f7f7",
-        display: "flex",
-        flexdirection: "column",
-        alignitems: "center",
-        justifycontent: "center",
-        minheight: "100vh",
-        margin: "0",
-      }}
+    // style={{
+    //   background: "#f7f7f7",
+    //   display: "flex",
+    //   flexdirection: "column",
+    //   alignitems: "center",
+    //   justifycontent: "center",
+    //   minheight: "100vh",
+    //   margin: "0",
+    // }}
     >
-      <Card style={{ width: "18rem", background: "blue", color: "white" }}>
-        <Card.Body>
-          <CanvasJSChart
-            options={priorityChart}
-            /* onRef = {ref => this.chart = ref} */
-          />
-        </Card.Body>
-        <Card.Footer>Tickets by Priority</Card.Footer>
-      </Card>
-      <Card style={{ width: "18rem", background: "blue", color: "white" }}>
-        <Card.Body>
-          <CanvasJSChart options={projectsChart} />
-        </Card.Body>
-        <Card.Footer>Tickets by Type</Card.Footer>
-      </Card>
-      <Card style={{ width: "18rem", background: "blue", color: "white" }}>
+      <button onClick={() => app.auth().signOut()}>Sign Out</button>
+      <Tabs defaultActiveKey="priority" id="uncontrolled-tab-example">
+        <Tab eventKey="priority" title="Pririty">
+          <Card style={{ width: "18rem", background: "blue", color: "white" }}>
+            <Card.Body>
+              <CanvasJSChart
+                options={priorityChart}
+                /* onRef = {ref => this.chart = ref} */
+              />
+            </Card.Body>
+            <Card.Footer>Tickets by Priority</Card.Footer>
+          </Card>
+        </Tab>
+        <Tab eventKey="type" title="Type">
+          <Card style={{ width: "18rem", background: "blue", color: "white" }}>
+            <Card.Body>
+              <CanvasJSChart options={projectsChart} />
+            </Card.Body>
+            <Card.Footer>Tickets by Type</Card.Footer>
+          </Card>
+        </Tab>
+      </Tabs>
+
+      {/* <Card style={{ width: "18rem", background: "blue", color: "white" }}>
         <Card.Body>
           <CanvasJSChart options={statusChart} />
         </Card.Body>
@@ -197,7 +207,7 @@ export const Dashboard = () => {
           </Card.Text>
         </Card.Body>
         <Card.Footer>Tickets by Priority</Card.Footer>
-      </Card>
+      </Card> */}
     </div>
   );
 };

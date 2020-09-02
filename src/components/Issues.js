@@ -30,7 +30,7 @@ function Issues() {
               </span>
               <Button>Add New Issue</Button>
             </div>
-            <Table>
+            <Table striped border hover>
               <thead>
                 <tr>
                   <td>ID</td>
