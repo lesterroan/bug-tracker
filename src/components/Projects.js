@@ -3,9 +3,11 @@ import { Card, Button, Table } from "react-bootstrap";
 import { GlobalContext } from "../context/GlobalState";
 import { Link } from "react-router-dom";
 
+
 function Projects() {
+
   const context = useContext(GlobalContext);
-  const projects = context.projects;
+  const myProjects = context.projects;
   return (
     <div>
       <Button>Create New Project</Button>
@@ -28,7 +30,7 @@ function Projects() {
               </tr>
             </thead>
             <tbody>
-              <MyProjects projects={projects} />
+              <MyProjects myProjects={myProjects} />
             </tbody>
           </Table>
         </Card.Body>
@@ -42,7 +44,7 @@ function Projects() {
 }
 
 const MyProjects = (props) => {
-  return props.projects.map((project) => {
+  return props.myProjects.map((project) => {
     return (
       <tr key={project.project_id}>
         <td>{project.project_name}</td>

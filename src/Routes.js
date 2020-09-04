@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
 import { GuestOptions } from "./components/GuestOptions";
@@ -11,7 +11,9 @@ import EditProject from "./components/EditProject";
 import Issues from "./components/Issues";
 import PrivateRoute from "./components/PrivateRoute";
 
-export default function Routes() {
+
+export default function Routes({ projects }) {
+  console.log(projects);
   return (
     <Switch>
       <PrivateRoute exact path="/" component={Dashboard} />
@@ -22,7 +24,7 @@ export default function Routes() {
       {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
       <PrivateRoute path="/manageusers" component={ManageUsers} />
       <PrivateRoute path="/projects" component={Projects} />
-      <PrivateRoute path="/project" component={Project} />
+      <PrivateRoute path="/project" component={Project} data={projects} />
       <PrivateRoute path="/editproject" component={EditProject} />
       <PrivateRoute path="/issues" component={Issues} />
     </Switch>

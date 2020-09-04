@@ -94,6 +94,7 @@ export const Dashboard = () => {
   let totalByIssueStatus = getNumberByStatus();
   console.log(totalByIssueStatus);
   let arr = Object.values(getNumberByPriority());
+
   let min = Math.min(...arr);
   let max = Math.max(...arr);
 
@@ -171,24 +172,11 @@ export const Dashboard = () => {
     >
       <button onClick={() => app.auth().signOut()}>Sign Out</button>
       <Tabs defaultActiveKey="priority" id="uncontrolled-tab-example">
-        <Tab eventKey="priority" title="Pririty">
-          <Card style={{ width: "18rem", background: "blue", color: "white" }}>
-            <Card.Body>
-              <CanvasJSChart
-                options={priorityChart}
-                /* onRef = {ref => this.chart = ref} */
-              />
-            </Card.Body>
-            <Card.Footer>Tickets by Priority</Card.Footer>
-          </Card>
+        <Tab eventKey="priority" title="Priority">
+          <ChartView chartData={priorityChart} chartName="Priority" />
         </Tab>
         <Tab eventKey="type" title="Type">
-          <Card style={{ width: "18rem", background: "blue", color: "white" }}>
-            <Card.Body>
-              <CanvasJSChart options={projectsChart} />
-            </Card.Body>
-            <Card.Footer>Tickets by Type</Card.Footer>
-          </Card>
+          <ChartView chartData={projectsChart} chartName="Type" />
         </Tab>
       </Tabs>
 
@@ -202,12 +190,26 @@ export const Dashboard = () => {
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
+            Some quick example text to build on the card title and make up the 
             bulk of the card's content.
           </Card.Text>
         </Card.Body>
         <Card.Footer>Tickets by Priority</Card.Footer>
       </Card> */}
     </div>
+  );
+};
+
+export default Dashboard;
+const ChartView = ({ chartData, chartName }) => {
+  return (
+    <>
+      <Card style={{ width: "18rem", background: "blue", color: "white" }}>
+        <Card.Body>
+          <CanvasJSChart options={chartData} />
+        </Card.Body>
+        <Card.Footer>Tickets by {chartName}</Card.Footer>
+      </Card>
+    </>
   );
 };
