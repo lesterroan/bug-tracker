@@ -12,10 +12,12 @@ import { GlobalContext } from "./context/GlobalState"
 
 ReactDOM.render(
   <Provider store={store}>
+
     <Router>
       <Navbar />
       <App />
     </Router>
+
   </Provider>,
   document.getElementById("root")
 );

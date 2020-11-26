@@ -10,6 +10,14 @@ const data = async () => {
 }
 
 let reducer = (state = [{ projects: data() }], action) => {
+
+    switch (action.type) {
+        case "setTodos":
+            return action.payload;
+        default:
+            return state
+
+    }
     // if (action.type === actions.BUG_ADDED) {
 
     //     return [...state, { id: ++lastId, description: action.payload.description, isResolved: false }]
@@ -19,7 +27,6 @@ let reducer = (state = [{ projects: data() }], action) => {
     //     return state.map(bug => bug.id !== action.payload.id ? bug : { ...bug, isResolved: true })
     // }
 
-    return state //you must return the current state is neither of the actions above, your don't want the system to blow up
 }
 
 export default reducer;
