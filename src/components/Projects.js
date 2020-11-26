@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Card, Button, Table } from "react-bootstrap";
 import { GlobalContext } from "../context/GlobalState";
 import { Link } from "react-router-dom";
-
+import store from "../store";
 
 function Projects() {
 
@@ -55,7 +55,7 @@ const MyProjects = (props) => {
           </span>
           <span>
             <Button>
-              <Link to={{ pathname: "/project", data: project }}>
+              <Link style={{ textDecoration: 'none', color: 'white' }} to={{ pathname: "/project", data: project }}>
                 More Info
               </Link>
             </Button>

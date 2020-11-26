@@ -17,6 +17,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Project(props) {
+  const [projectName, setProjectName] = React.useState('');
+
   const goBackToProjects = () => {
     props.history.goBack();
   };
@@ -49,7 +51,7 @@ function Project(props) {
             <Button onClick={goBackToProjects}>All Projects</Button>
 
             {/* <Link to={{ pathname: "/editproject", data: project }}>
-                Edit Project
+                Edit Project 
               </Link> */}
             <EditProject project={project} />
           </span>
@@ -122,6 +124,7 @@ const People = (props) => {
 };
 
 const EditProject = (props) => {
+  console.log("selected project", props);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -149,7 +152,7 @@ const EditProject = (props) => {
           <Form>
             <Form.Group>
               <Form.Label>Project Name</Form.Label>
-              <Form.Control type="text" placeholder="initial value" />
+              <Form.Control type="text" placeholder={props.project.project_name} />
               <Form.Text className="text-muted">
                 Enter a relevant project name.
               </Form.Text>
@@ -160,7 +163,7 @@ const EditProject = (props) => {
                 <Col>
                   <Form.Label>Start Date</Form.Label>
                   <Form.Control type="text" placeholder="initial value" />
-                  <PickDate />
+                  <PickDate startDate={props.project.start_date} />
                   <Form.Label>Target End Date</Form.Label>
                   <Form.Control type="text" placeholder="initial value" />
                 </Col>
@@ -194,6 +197,7 @@ const EditProject = (props) => {
 };
 
 const PickDate = (props) => {
+  console.log("Start Date", props)
   const [startDate, setStartDate] = useState(new Date());
   const handleChange = (date) => {
     setStartDate(date);

@@ -5,13 +5,14 @@ import { GlobalContext } from "../context/GlobalState";
 import CanvasJSReact from "../canvasjs.react";
 // import Firebase from "./Firebase";
 import app from "./Firebase";
+import store from "../store";
+
 //var CanvasJSReact = require('./canvasjs.react');
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export const Dashboard = () => {
   const context = useContext(GlobalContext);
-
   const getNumberByPriority = () => {
     let none = 0;
     let low = 0;

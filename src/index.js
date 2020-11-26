@@ -5,16 +5,18 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Firebase, { FirebaseContext } from "./components/Firebase";
+import { Provider } from 'react-redux';
+import store from './store';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { GlobalContext } from "./context/GlobalState"
 
 ReactDOM.render(
-  // <FirebaseContext.Provider value={new Firebase()}>
-  <Router>
-    <Navbar />
-    <App />
-  </Router>,
-  // </FirebaseContext.Provider>,
+  <Provider store={store}>
+    <Router>
+      <Navbar />
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 

@@ -6,11 +6,11 @@ import firebase from "firebase"
 
 function App() {
   const [projects, setProjects] = useState([])
-  useEffect(async () => {
-    const db = firebase.firestore();
-    const data = await db.collection('issues').get();
-    setProjects(data.docs.map(project => project.data()))
-  }, [])
+  // useEffect(async () => {
+  //   const db = firebase.firestore();
+  //   const data = await db.collection('issues').get();
+  //   setProjects(data.docs.map(project => project.data()))
+  // }, [])
 
   return (
     <AuthProvider>
