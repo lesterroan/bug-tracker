@@ -1,26 +1,7 @@
 import { rootRef } from "../config/firebase";
-import { FETCH_TODOS } from "./types";
-
-// export const addToDo = newToDo => async dispatch => {
-//     // todosRef.push().set(newToDo);
-// };
-
-// export const completeToDo = completeToDoId => async dispatch => {
-//     console.log('completeToDo');
-//     // todosRef.child(completeToDoId).remove();
-// };
 
 export const fetchData = async (type) => {
     console.log("Fetching Data")
-    // todosRef.on("value", snapshot => {
-    //     console.log("Fetched Data:", snapshot.val())
-    //     dispatch({
-    //         type: FETCH_TODOS,
-    //         payload: snapshot.val()
-    //     });
-    // });
-
-
     let allData = [];
     let ref = rootRef.collection(type);
     let fetchedData = await ref.get();
