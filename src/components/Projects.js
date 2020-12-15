@@ -1,13 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Card, Button, Table } from "react-bootstrap";
 import { GlobalContext } from "../context/GlobalState";
 import { Link } from "react-router-dom";
-import store from "../store";
+import { fetchData } from "../actions"
 
 function Projects() {
 
   const context = useContext(GlobalContext);
-  const myProjects = context.projects;
+  const [myProjects, setMyProjects] = useState([])
+
+  React.useEffect(() => {
+    const fetch = async () => {
+      const data = await fetchData('projects');
+      console.log('Projects', data)
+      setMyProjects(data);
+    }
+    fetch();
+  }, [])
+
   return (
     <div>
       <Button>Create New Project</Button>

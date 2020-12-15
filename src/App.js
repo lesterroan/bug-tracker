@@ -8,11 +8,6 @@ import * as serviceWorker from "./serviceWorker"
 
 function App() {
   const [projects, setProjects] = useState([])
-  // useEffect(async () => {
-  //   const db = firebase.firestore();
-  //   const data = await db.collection('issues').get();
-  //   setProjects(data.docs.map(project => project.data()))
-  // }, [])
 
   return (
     <AuthProvider>
@@ -22,7 +17,8 @@ function App() {
     </AuthProvider>
   );
 }
-serviceWorker.register();
+
+serviceWorker.register()
 
 
 export default App;

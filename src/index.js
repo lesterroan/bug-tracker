@@ -6,9 +6,16 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { Provider } from 'react-redux';
-import store from './store';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GlobalContext } from "./context/GlobalState"
+
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
+import reducers from "./reducers";
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,7 +24,6 @@ ReactDOM.render(
       <Navbar />
       <App />
     </Router>
-
   </Provider>,
   document.getElementById("root")
 );

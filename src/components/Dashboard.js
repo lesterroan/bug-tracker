@@ -3,8 +3,8 @@ import { Card, Button, Tabs, Tab } from "react-bootstrap";
 import "./Dashboard.css";
 import { GlobalContext } from "../context/GlobalState";
 import CanvasJSReact from "../canvasjs.react";
-// import Firebase from "./Firebase";
-import app from "./Firebase";
+
+import { app } from "../config/firebase";
 import store from "../store";
 
 //var CanvasJSReact = require('./canvasjs.react');

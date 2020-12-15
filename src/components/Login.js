@@ -61,7 +61,7 @@ import {
 
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import app from "./Firebase";
+import { app } from "../config/firebase"
 import { AuthContext } from "./Auth.js";
 
 const Login = ({ history }) => {

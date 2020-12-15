@@ -15,9 +15,13 @@ import Modal from "react-bootstrap/Modal";
 import ModalDialog from "react-bootstrap/ModalDialog";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { update } from "../actions"
 
 function Project(props) {
+  let project = props.location.data;
+
   const [projectName, setProjectName] = React.useState('');
+
 
   const goBackToProjects = () => {
     props.history.goBack();
@@ -34,7 +38,8 @@ function Project(props) {
       (person) => person.assigned_project === projectId
     );
   };
-  let project = props.location.data;
+
+
   console.log(project);
   const context = useContext(GlobalContext);
   const issues = getProjectIssues(project.project_id);
@@ -57,6 +62,13 @@ function Project(props) {
           </span>
         </Card.Title>
         <Card.Body>
+          <Card>
+            <Card.Title>Status</Card.Title>
+            <Card.Body>
+              <p>{project.status}</p>
+            </Card.Body>
+          </Card>
+
           <Card>
             <Card.Title>Assigned Personnel</Card.Title>
             <Card.Body>
@@ -123,12 +135,17 @@ const People = (props) => {
   });
 };
 
-const EditProject = (props) => {
-  console.log("selected project", props);
+const EditProject = ({ project }) => {
+  const [startDate, setStartDate] = React.useState(project.start_date);
+  const [endDate, setEndDate] = React.useState(project.target_end_date);
+  console.log("selected project", project);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleProjectInfoChange = () => {
+
+  }
 
   return (
     <>
@@ -152,7 +169,7 @@ const EditProject = (props) => {
           <Form>
             <Form.Group>
               <Form.Label>Project Name</Form.Label>
-              <Form.Control type="text" placeholder={props.project.project_name} />
+              <Form.Control type="text" value={project.project_name} />
               <Form.Text className="text-muted">
                 Enter a relevant project name.
               </Form.Text>
@@ -162,10 +179,9 @@ const EditProject = (props) => {
               <Form.Row>
                 <Col>
                   <Form.Label>Start Date</Form.Label>
-                  <Form.Control type="text" placeholder="initial value" />
-                  <PickDate startDate={props.project.start_date} />
+                  <DatePicker selected={new Date(startDate)} />
                   <Form.Label>Target End Date</Form.Label>
-                  <Form.Control type="text" placeholder="initial value" />
+                  <DatePicker selected={new Date(endDate)} />
                 </Col>
                 <Col>
                   <InputGroup className="mb-2 mr-sm-2">
@@ -189,7 +205,7 @@ const EditProject = (props) => {
             Close
           </Button>
           <Button variant="danger">Delete</Button>
-          <Button variant="primary">Apply Changes</Button>
+          <Button variant="primary" onClick={() => handleProjectInfoChange()}>Apply Changes</Button>
         </Modal.Footer>
       </Modal>
     </>
@@ -197,13 +213,14 @@ const EditProject = (props) => {
 };
 
 const PickDate = (props) => {
-  console.log("Start Date", props)
-  const [startDate, setStartDate] = useState(new Date());
-  const handleChange = (date) => {
-    setStartDate(date);
-  };
 
-  return <DatePicker selected={startDate} onChange={handleChange} />;
+
+
+  let selectedDate = new Date(props.date);
+  return <DatePicker selected={new Date(props.date)} />
+
+
+
 };
 
 export default Project;

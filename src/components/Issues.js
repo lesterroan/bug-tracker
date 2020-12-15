@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import {
   Card,
@@ -12,10 +12,25 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import { fetchData, getInfoByTypeId } from "../actions";
+import processDate from "../ProcessDate";
 
 function Issues() {
   const context = useContext(GlobalContext);
-  let issues = context.issues;
+  const [issues, setIssues] = useState([]);
+  const [people, setPeople] = useState([]);
+  //let issues = context.issues;
+
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await fetchData('issues');
+      console.log(data)
+      setIssues(data);
+    }
+    fetch()
+  }, [])
+
+
 
   return (
     <div>
@@ -64,13 +79,13 @@ const AllIssues = (props) => {
       <tr key={issue.issue_id}>
         <td>{issue.issue_id}</td>
         <td>{issue.issue_summary}</td>
-        <td>{issue.identified_date}</td>
+        <td>{processDate(issue.identified_date)}</td>
         <td>{issue.status}</td>
         <td>{issue.priority}</td>
-        <td>{issue.target_resolution_date}</td>
-        <td>{issue.actual_resolution_date}</td>
+        <td>{processDate(issue.target_resolution_date)}</td>
+        <td>{processDate(issue.actual_resolution_date)}</td>
         <td>{issue.progress}</td>
-        <td>Get person by id</td>
+        <td>{issue.assigned_to}</td>
         <td>get project by id</td>
         <td>get assigned to by id</td>
         <td>
@@ -201,5 +216,11 @@ const EditIssue = (props) => {
     </>
   );
 };
+
+const handleFetchInfo = async (type, typeId, id) => {
+  let info = await getInfoByTypeId(type, typeId, id);
+  console.log(info)
+  return "lastname";
+}
 
 export default Issues;
