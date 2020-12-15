@@ -143,8 +143,13 @@ const EditProject = ({ project }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleProjectInfoChange = () => {
-
+  const handleProjectInfoChange = (data) => {
+    data = {
+      start_date: new Date(startDate).getTime(),
+      target_end_date: new Date(endDate).getTime(),
+    }
+    console.log("New Data", data)
+    update("projects", project.docID, data)
   }
 
   return (
@@ -179,9 +184,9 @@ const EditProject = ({ project }) => {
               <Form.Row>
                 <Col>
                   <Form.Label>Start Date</Form.Label>
-                  <DatePicker selected={new Date(startDate)} />
+                  <DatePicker selected={new Date(startDate)} onChange={date => setStartDate(date)} />
                   <Form.Label>Target End Date</Form.Label>
-                  <DatePicker selected={new Date(endDate)} />
+                  <DatePicker selected={new Date(endDate)} onChange={date => setEndDate(date)} />
                 </Col>
                 <Col>
                   <InputGroup className="mb-2 mr-sm-2">
@@ -210,17 +215,6 @@ const EditProject = ({ project }) => {
       </Modal>
     </>
   );
-};
-
-const PickDate = (props) => {
-
-
-
-  let selectedDate = new Date(props.date);
-  return <DatePicker selected={new Date(props.date)} />
-
-
-
 };
 
 export default Project;

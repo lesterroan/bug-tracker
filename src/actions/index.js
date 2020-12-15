@@ -21,13 +21,15 @@ export const fetchData = async (type) => {
     // });
 
 
-    let data = [];
-    let issuesRef = rootRef.collection(type);
-    let allIssues = await issuesRef.get();
-    allIssues.forEach(doc => {
-        data.push(doc.data())
+    let allData = [];
+    let ref = rootRef.collection(type);
+    let fetchedData = await ref.get();
+    fetchedData.forEach(doc => {
+        const data = doc.data();
+        allData.push({ ...data, docID: doc.id })
     })
-    return data;
+    console.log(allData)
+    return allData;
 };
 
 export const getInfoByTypeId = async (type, typeId, id) => {
@@ -42,7 +44,9 @@ export const getInfoByTypeId = async (type, typeId, id) => {
     return info;
 }
 
-export const update = async (type, typeId, id, data) => {
+export const update = async (collection, docID, data) => {
 
-    let res = await rootRef.collection(type).where(typeId, "==", id).update(data).then(res => res);
+    console.log("docId", docID);
+    console.log("data", data);
+    let res = await rootRef.collection(collection).doc(docID).update(data);
 }
